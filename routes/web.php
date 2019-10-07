@@ -22,7 +22,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::prefix('admin')->group(function(){
     Route::get('/','AdminController@index')->name('admin.index');
+    
+    // Group rout for product admin
+    Route::prefix('product')->group(function(){
+        Route::get('/','ProductController@index')->name('admin.product.index');
+        Route::get('/add','ProductController@create')->name('admin.product.create');
+        Route::post('/','ProductController@store')->name('admin.product.store');
+        Route::get('/{id}','ProductController@show')->name('admin.product.show');
+        Route::get('/edit/{id}','ProductController@edit')->name('admin.product.edit');
+        Route::put('/update/{id}','ProductController@update')->name('admin.product.update');
+        Route::delete('/delete/{id}','ProductController@destroy')->name('admin.product.delete');
+    });
 });
