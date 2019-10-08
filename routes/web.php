@@ -35,4 +35,13 @@ Route::prefix('admin')->group(function(){
         Route::put('/update/{id}','ProductController@update')->name('admin.product.update');
         Route::delete('/delete/{id}','ProductController@destroy')->name('admin.product.delete');
     });
+    Route::prefix('news')->group(function(){
+        Route::get('/','NewsController@index')->name('admin.news.index');
+        Route::get('/add','NewsController@create')->name('admin.news.create');
+        Route::post('/','NewsController@store')->name('admin.news.store');
+        Route::get('/{id}','NewsController@show')->name('admin.news.show');
+        Route::get('/edit/{id}','NewsController@edit')->name('admin.news.edit');
+        Route::put('/update/{id}','NewsController@update')->name('admin.news.update');
+        Route::delete('/delete/{id}','NewsController@destroy')->name('admin.news.delete');
+    });
 });

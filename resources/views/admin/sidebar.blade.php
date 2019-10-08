@@ -35,7 +35,7 @@
         <li><a href="#"><i class="fa fa-link"></i> <span>Inbox</span></a></li>
         <li><a href="{{ Route('admin.product.index') }}"><i class="fa fa-link"></i> <span>Product</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Category</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>News</span></a></li>
+        <li><a href="{{ Route('admin.news.index') }}"><i class="fa fa-link"></i> <span>News</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Gallery</span></a></li>
         {{-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Category</span>
