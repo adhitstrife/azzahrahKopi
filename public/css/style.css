@@ -1,0 +1,188 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+.header{
+    height: 100vh;
+}
+
+.header img{
+    height: 100vh;
+    width: auto;
+}
+
+.carousel-content{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%,-50%);
+    z-index: 30;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+.carousel-content p{
+    padding-top: 50px;
+}
+
+h1{
+    font-family: 'Pacifico', cursive;
+}
+
+.introduction{
+    padding-bottom: 100px;
+}
+.introduction h1{
+    padding-top: 100px;
+    width: 200px;
+}
+
+.introduction .introduction-text{
+    padding-top: 50px;
+    text-align: center;
+}
+
+
+.introduction .introduction-text p{
+    padding-top: 20px;
+    text-align: center;
+}
+
+.introduction .introduction-items{
+    padding-top: 50px;
+}
+
+.introduction .introduction-items .card .card-body{
+    padding-top: 50px;
+}
+
+.introduction .introduction-items .card .card-body .image{
+    height: 140px;
+    background-color: white;
+}
+
+.introduction .introduction-items .card .card-body h4{
+    padding-top: 20px;
+    font-family: 'Pacifico', cursive;
+}
+
+.introduction .introduction-items .card .card-body p{
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.introduction .introduction-items .card .card-body .button{
+    padding-top: 20px;
+}
+
+.introduction .introduction-items .card:hover{
+    background-color: yellowgreen;
+    color: white;
+}
+
+.introduction .introduction-items .card:hover .button a{
+    background-color: yellowgreen;
+    border-color: yellow;
+    color: yellow;
+}
+
+.introduction .introduction-items .card .button a:hover{
+    background-color:black;
+    border-color: yellowgreen;
+    color: white;
+}
+
+.introduction > .introduction-items > .container > .row > .col-md-4 > .card > .card-body > .image > p > img{
+    height: 15vh;
+    width: auto;
+    margin-top: 25px;
+    padding: 2px;
+}
+
+.quotation{
+    overflow: hidden;
+    height: 50vh;
+}
+.quotation .quotation-content{
+    height: 100%;
+    background-image: url("../image/paralax/paralax.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.quotation .quotation-content .row{
+    height: 100%;
+    color:yellowgreen;
+}
+
+.quotation .quotation-content .row h3{
+    font-weight: bold;
+}
+
+.popularProduct {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.popularProduct .product{
+    margin-top: 50px;
+}
+
+.contact{
+    height: auto;
+    overflow: auto;
+    background-color: yellowgreen;
+}
+
+.contact h1{
+    padding-top: 100px;
+}
+
+.contact .contactForm{
+    padding-top: 50px;
+}
+.contact button{
+    width: 100%;
+}
+
+.footer{
+    height: auto;
+    background-color: #64686e;
+}
+
+.footer footer{
+    padding-top: 50px;
+    color: white;
+    
+}
+.footer footer .footer-items{
+    margin-top: 20px;
+}
+
+.footer footer .footer-items .icon{
+    margin-top: 10px;
+    padding-bottom: 15px;
+}
+
+.footer footer  h4{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.footer footer .links .links-content{
+    padding-top: 15px;
+}
+
+.footer footer .links .links-content .links-item{
+    padding: 3px;
+}
+
+
+.footer footer li{
+    padding-top: 5px;
+    list-style-type: none;
+
+}

@@ -21,7 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function(){
     Route::get('/','AdminController@index')->name('admin.index');
     
@@ -44,4 +43,8 @@ Route::prefix('admin')->group(function(){
         Route::put('/update/{id}','NewsController@update')->name('admin.news.update');
         Route::delete('/delete/{id}','NewsController@destroy')->name('admin.news.delete');
     });
+});
+
+Route::namespace('front')->group(function(){
+    Route::get('/','HomeController@index')->name('front.index');
 });
