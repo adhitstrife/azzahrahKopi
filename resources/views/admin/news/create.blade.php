@@ -98,25 +98,28 @@ desired effect
             <div class="box-header with-border">
                 <h3 class="box-title">Add New News</h3>
             </div>
-        <form action="{{Route('admin.news.store')}}" method="POST">
+        <form action="{{Route('admin.news.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
                     <div class="box-body">
                         <div class="form-group">
                             <label>Title</label>
-                            @error('name')
+                            @error('title')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <input type="text" class="form-control" placeholder="Title" name="title">
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            @error('desc')
+                            @error('news')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <textarea class="form-control" rows="3" placeholder="News Description" name="news"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
+                            @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <input type="file" name="image" id="">
                         </div>
                     </div>

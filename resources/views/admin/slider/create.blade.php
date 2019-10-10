@@ -79,12 +79,12 @@ desired effect
     <section class="row content-header">
         <div class="col-md-8">
             <h1>
-              Product
-              <small>Add Product Section</small>
+              Slider
+              <small>Add Slider Section</small>
             </h1>
         </div>
         <div class="col-md-2 align-middle h-200">
-        <a href="{{ route('admin.product.index')}}" class="btn btn-lg btn-primary">Product</a>
+        <a href="{{ route('admin.slider.index')}}" class="btn btn-lg btn-primary">Slider</a>
         </div>
       {{-- <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -98,85 +98,21 @@ desired effect
             <div class="box-header with-border">
                 <h3 class="box-title">Add New Product</h3>
             </div>
-        <form action="{{Route('admin.product.update',$data->id)}}" method="POST">
+        <form action="{{Route('admin.slider.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="_method" value="PUT">
                     <div class="box-body">
                         <div class="form-group">
-                            <label>Nama Product</label>
-                            @error('name')
+                            <label for="image">Add Slider Image</label>
+                            @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                            <input type="text" class="form-control" value="{{$data->name}}" name="name">
-                        </div>
-                        <div class="form-group">
-                            <label>Tags</label>
-                            @error('tags')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <select class="custom-select" name="tags">
-                                @switch($data->tags)
-                                @case(1)
-                                  <option value="0">Uncategorized</option>
-                                  <option selected value="1">Makanan</option>
-                                  <option value="2">Minuman</option>
-                                  <option value="3">Kue Tradisional</option>
-                                @break
-                                @case(2)
-                                  <option value="0">Uncategorized</option>
-                                  <option value="1">Makanan</option>
-                                  <option selected value="2">Minuman</option>
-                                  <option value="3">Kue Tradisional</option>                                
-                                @break
-                                @case(3)
-                                  <option value="0">Uncategorized</option>
-                                  <option value="1">Makanan</option>
-                                  <option value="2">Minuman</option>
-                                  <option selected value="3">Kue Tradisional</option>                                
-                                @break
-                                @default
-                                  <option selected value="0">Uncategorized</option>
-                                  <option value="1">Makanan</option>
-                                  <option value="2">Minuman</option>
-                                  <option value="3">Kue Tradisional</option>
-                                @endswitch
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            @error('desc')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <textarea class="form-control" rows="3" name="desc">{{$data->desc}}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="price">Harga</label>
-                            @error('price')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <div class="input-group">
-                                <span class="input-group-addon">Rp</span>
-                                <input type="number" class="form-control" min=0 value="{{$data->price}}" name="price" >
-                            </div>
+                            <input type="file" name="image" id="" accept="image/jpeg">
                         </div>
                     </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
-                @if (isset($data->image))
-                    <img src="{{ url('image/product/'.$data->image->image) }}" alt="productImage">
-                    <form action="{{ route('admin.product.image.delete',$data->image->id) }}" method="POST">
-                      @csrf
-                      @method('delete')
-                      <button type="submit" class="btn btn-link">Delete Image</button>
-                    </form>
-                @else
-                    <div class="form-group">
-                      <label for="image">Image</label>
-                      <input type="file" name="image" id="">
-                    </div>
-                @endif
         </div>
     </section>
     <!-- /.content -->

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Product;
+use App\images;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use File;
+use Image;
 
 
 class ProductController extends Controller
@@ -17,7 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $datas = Product::orderBy('created_at','asc')->paginate(5);
+        $datas = Product::orderBy('created_at','desc')->paginate(5);
         return view('admin.product.index',['user' => $user,'datas'=>$datas]);
     }
 
@@ -43,14 +47,27 @@ class ProductController extends Controller
         $validate = $request->validate([
             'name'=>'required',
             'desc'=>'required',
-            'price'=>'required'
+            'tags'=>'required',
+            'price'=>'required',
+            'image'=>'required|image|max:10024',
         ]);
 
         $data = new Product;
         $data->name = $request->name;
         $data->desc = $request->desc;
         $data->price = $request->price;
-        $data ->save();
+        $data->tags = $request->tags;
+        $data->save();
+
+        $image = new images;
+        $uploadFile = $request->image;
+        $filename = time()."product".".".$uploadFile->getClientOriginalExtension();
+        $destination = 'image/product';
+        $uploadFile->move(public_path($destination),$filename);
+        $image->image = $filename;
+        $image->product_id = $data->id;
+        $image->save();
+
         $user = Auth::user();
         return redirect()->route('admin.product.index')->with('user',$user);
     }
@@ -66,6 +83,19 @@ class ProductController extends Controller
         $data = $product->findOrFail($id);
         $user = Auth::user();
         return view('admin.product.show',['user' => $user,'data'=>$data]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Image  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function image(Images $image,$id)
+    {
+        $data = $image->findOrFail($id);
+        $user = Auth::user();
+        return view('admin.product.image',['user' => $user,'data'=>$data]);
     }
 
     /**
@@ -90,11 +120,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product, $id)
     {
+        $validate = $request->validate([
+            'name'=>'required',
+            'desc'=>'required',
+            'tags'=>'required',
+            'price'=>'required',
+        ]);
         $data = $product->findOrFail($id);
         $data->name = $request->name;
         $data->desc = $request->desc;
         $data->price = $request->price;
         $data ->save();
+
         $user = Auth::user();
         return redirect()->route('admin.product.index')->with('user',$user);
     }
@@ -109,6 +146,28 @@ class ProductController extends Controller
     {
         $data = $product->findOrFail($id);
         $data->delete();
+        $user = Auth::user();
+        return redirect()->route('admin.product.index')->with('user',$user);
+    }
+
+    public function editImage(images $image,Request $request,$id)
+    {
+        $image = $image->findOrFail($id);
+        $imagepath = public_path('image/product/'.$image->image);
+        if(File::exists($imagepath)){
+            File::delete($imagepath);
+        }
+
+        $newImage = new images;
+        $uploadFile = $request->image;
+        $filename = time()."images".".".$uploadFile->getClientOriginalExtension();
+        $destination = 'image/product';
+        $uploadFile->move(public_path($destination),$filename);
+        $newImage->image = $filename;
+        $newImage->product_id = $image->product_id;
+        $newImage->save();
+
+        $image->delete();
         $user = Auth::user();
         return redirect()->route('admin.product.index')->with('user',$user);
     }

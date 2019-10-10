@@ -100,7 +100,21 @@ desired effect
                     <div class="box-header with-border">
                         <div class="user-block">
                             <a href="{{ Route('admin.product.show',$data->id)}}" class="username">{{$data->name}}</a>
-                            <span class="description"><b>Rp. {{$data->price}}</b></span>
+                            @switch($data->tags)
+                                @case(1)
+                                  <a href="#" class="description">Makanan</a>
+                                @break
+                                @case(2)
+                                  <a href="#" class="description">Minuman</a>                                
+                                @break
+                                @case(1)
+                                  <a href="#" class="description">Kue Tradisional</a>                                
+                                @break
+                                @default
+                                  <a href="#" class="description">Uncategorized</a>                                
+                                    
+                            @endswitch
+                            <span class="description"><b>Rp. {{$data->price}}</span>
                             <span class="description">{{$data->created_at}}</span>
                         </div>
                         
@@ -114,6 +128,7 @@ desired effect
                         @method('delete')
                         <button type="submit" class="btn btn-danger">Delete</button>
                         <a href="{{ Route('admin.product.edit',$data->id)}}" class="btn btn-info">Edit</a>
+                        <a href="{{ Route('admin.product.image.edit',$data->image->id)}}" class="btn btn-link">Show Image</a>
                     </form>
                     </div>
                 </div>

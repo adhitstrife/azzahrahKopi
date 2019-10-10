@@ -98,7 +98,7 @@ desired effect
             <div class="box-header with-border">
                 <h3 class="box-title">Add New Product</h3>
             </div>
-        <form action="{{Route('admin.product.store')}}" method="POST">
+        <form action="{{Route('admin.product.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
                     <div class="box-body">
                         <div class="form-group">
@@ -107,6 +107,18 @@ desired effect
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <input type="text" class="form-control" placeholder="Nama Product" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label>Tags</label>
+                            @error('tags')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <select class="custom-select" name="tags">
+                                <option selected value="0">Uncategorized</option>
+                                <option value="1">Makanan</option>
+                                <option value="2">Minuman</option>
+                                <option value="3">Kue Tradisional</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
@@ -127,7 +139,10 @@ desired effect
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="file" name="image" id="">
+                            @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <input type="file" name="image" id="" accept="image/jpeg">
                         </div>
                     </div>
                     <div class="box-footer">

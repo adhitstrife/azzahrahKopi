@@ -113,7 +113,9 @@ desired effect
                         @method('delete')
                         <button type="submit" class="btn btn-danger">Delete</button>
                         <a href="{{ Route('admin.news.edit',$data->id)}}" class="btn btn-info">Edit</a>
-                    </form>
+                        <a href="{{ Route('admin.news.image.edit',$data->imageNews->id)}}" class="btn btn-link">Show Image</a>
+
+                      </form>
                     </div>
                 </div>
             </div>

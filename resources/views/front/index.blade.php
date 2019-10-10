@@ -6,31 +6,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <title>Azzahrah Kopi</title>
 </head>
 <body>
     {{-- navbar section --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-success">
         <a class="navbar-brand" href="#">
-            Navbar
+            <img src="{{ asset('image/logo.png') }}" alt="" class="img-fluid icon">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="nav navbar-nav mx-auto">
+            <ul class="nav navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{{ route('front.index') }}"">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Product</a>
+                  <a class="nav-link" href="{{ route('front.product.page') }}">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Berita</a>
+                    <a class="nav-link" href="{{route('front.berita.page')}}">Berita</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Gallery</a>
+                    <a class="nav-link" href="{{ route('front.gallery.page') }}">Gallery</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kontak</a>
@@ -42,29 +43,16 @@
     <div class="header">
         <div id="carouselHeader" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{asset('image/Header/header1.jpg')}}" class="d-block w-100" alt="...">
-                    <div class="carousel-content">
-                        <h1>Start Your Day With A Cofee</h1>
-                        <p>Find The Best Cofee For You Here</p>
+                @foreach ($slider as $slider)
+                    <div class="carousel-item active">
+                        <img src="{{asset('storage/image/slider/'.$slider->image)}}" class="d-block w-100" alt="...">
                     </div>
-                </div>
+                @endforeach
                 <div class="carousel-item">
                     <img src="{{asset('image/Header/header2.jpg')}}" class="d-block w-100" alt="...">
-                    <div class="carousel-content">
-                        <h1>Real Taste Real Food</h1>
-                        <p>Passion For Your Perfect Food</p>
-                    </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{{asset('image/Header/header3.jpg')}}" class="d-block w-100" alt="...">
-                    <div class="carousel-content">
-                        <h1>Test</h1>
-                    </div>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselHeader" role="button" data-slide="prev">
@@ -151,112 +139,103 @@
         </div>
     </div>
 
-    <div class="quotation">
-        <div class="container-fluid quotation-content">
-            <div class="row align-items-center text-center">
-                <h3 class="col-sm-12 col-md-12">
-                    "Fresh and healthy master of town"
-                </h3>
-                <div class="links col-md-12">
-                    <a href="#" class="btn btn-light btn-lg">Buy Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="popularProduct">
         <h1 class="mx-auto text-center">Popular Product</h1>
-        <div class="container-fluid row justify-content-around">
-            <div class="product col-lg-4 col-md-6 mb-4">                
-                        <!--Card-->
-                        <div class="card card-cascade narrower mb-4" style="margin-top: 28px">
-                          <!--Card image-->
-                          <div class="view view-cascade">
-                            <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" class="card-img-top"
-                              alt="">
-                            <a>
-                              <div class="mask rgba-white-slight"></div>
-                            </a>
-                          </div>
-                          <!--/.Card image-->
-                    
-                          <!--Card content-->
-                          <div class="card-body card-body-cascade">
-                            <!--Title-->
-                            <h4 class="card-title">Product 1</h4>
-                            <!--Text-->
-                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                              laboriosam, nisi ut
-                              aliquid ex ea commodi.</p>
-                            <a class="btn btn-outline-success">Beli</a>
-                          </div>
-                          <!--/.Card content-->
-                    
-                        </div>
-                        <!--/.Card-->    
-            </div>
-            <div class="product col-lg-4 col-md-6 mb-4">                
-                        <!--Card-->
-                        <div class="card card-cascade narrower mb-4" style="margin-top: 28px">
-                          <!--Card image-->
-                          <div class="view view-cascade">
-                            <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" class="card-img-top"
-                              alt="">
-                            <a>
-                              <div class="mask rgba-white-slight"></div>
-                            </a>
-                          </div>
-                          <!--/.Card image-->
-                    
-                          <!--Card content-->
-                          <div class="card-body card-body-cascade">
-                            <!--Title-->
-                            <h4 class="card-title">Product 1</h4>
-                            <!--Text-->
-                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                              laboriosam, nisi ut
-                              aliquid ex ea commodi.</p>
-                            <a class="btn btn-outline-success">Beli</a>
-                          </div>
-                          <!--/.Card content-->
-                    
-                        </div>
-                        <!--/.Card-->    
-            </div>
-            <div class="product col-lg-4 col-md-6 mb-4">                
-                        <!--Card-->
-                        <div class="card card-cascade narrower mb-4" style="margin-top: 28px">
-                          <!--Card image-->
-                          <div class="view view-cascade">
-                            <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" class="card-img-top"
-                              alt="">
-                            <a>
-                              <div class="mask rgba-white-slight"></div>
-                            </a>
-                          </div>
-                          <!--/.Card image-->
-                    
-                          <!--Card content-->
-                          <div class="card-body card-body-cascade">
-                            <!--Title-->
-                            <h4 class="card-title">Product 1</h4>
-                            <!--Text-->
-                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                              laboriosam, nisi ut
-                              aliquid ex ea commodi.</p>
-                            <a class="btn btn-outline-success">Beli</a>
-                          </div>
-                          <!--/.Card content-->
-                    
-                        </div>
-                        <!--/.Card-->    
-            </div>
-            <div class="button mx-auto">
-                <a href="" class="btn btn-lg btn-link">Show More</a>
+        <div class="container-fluid row justify-content-center">
+            @foreach ($data as $data)
+    
+                <div class="product col-lg-4 col-md-6 mb-4">                
+                            <!--Card-->
+                            <div class="card card-cascade narrower mb-4" style="margin-top: 28px">
+                            <!--Card image-->
+                            <div class="view view-cascade">
+                                <img src="{{ url('image/product/'.$data->image->image) }}" class="card-img-top"
+                                alt="">
+                                <a>
+                                <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!--/.Card image-->
+                        
+                            <!--Card content-->
+                            <div class="card-body card-body-cascade text-center">
+                                <!--Title-->
+                                <h4 class="card-title">{{ $data->name }}</small></h4>
+                                <!--Text-->
+                                <p class="card-text">Rp. {{ $data->price }}</p>
+                                <a class="btn btn-outline-success">Beli</a>
+                            </div>
+                            <!--/.Card content-->
+                        
+                            </div>
+                            <!--/.Card-->    
+                </div>
+            @endforeach
+            <div class="button col-md-12 text-center">
+                <a href="{{route('front.product.page')}}" class="btn btn-lg btn-link">Show More</a>
             </div>
         </div>
     </div>
 
+    <div class="testimoni">
+        <div class="testimoni-content row text-center justify-content-around">
+            <h1 class="mx-auto col-md-12">Testimoni</h1>
+            <div class="card col-md-3 mb-md-0 mb-5">
+        
+              <div class="testimonial">
+                <!--Avatar-->
+                <div class="avatar mx-auto">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" class="rounded-circle z-depth-1 img-fluid">
+                </div>
+                <!--Content-->
+                <h4 class="font-weight-bold dark-grey-text mt-4">Anna Deynah</h4>
+                <h6 class="font-weight-bold blue-text my-3">Web Designer</h6>
+                <p class="font-weight-normal dark-grey-text blockquote">
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+                  eos id officiis hic tenetur quae quaerat ad velit ab hic tenetur."</p>
+                <!--Review-->
+              </div>
+        
+            </div>
+        </div>
+    <!--Grid column-->
+
+    </div>
+        <div class="latestNews">
+                <h1 class="mx-auto text-center">Berita Terbaru</h1>
+                <div class="container-fluid row justify-content-center">
+                    <div class="news col-lg-9 col-md-6 mb-4">                
+                        <!--Card-->
+                        <div class="card card-cascade narrower mb-4" style="margin-top: 28px">
+                        <!--Card image-->
+                            <div class="view view-cascade">
+                                <img class="img-thumbnail img-fluid" src="{{ url('storage/image/news/'.$news->imageNews->image) }}" class="card-img-top"
+                                alt="">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                        <!--/.Card image-->
+                                
+                        <!--Card content-->
+                            <div class="card-body card-body-cascade">
+                                <!--Title-->
+                                <h4 class="card-title">{{ $news->title }}</h4>
+                                <!--Text-->
+                                <a class="btn btn-outline-success">Read More</a>
+                            </div>
+                        <!--/.Card content-->
+                                
+                    </div>
+                    <!--/.Card-->    
+                </div>
+            <div class="button col-md-12 text-center">
+                <a href="{{route('front.berita.page')}}" class="btn btn-lg btn-link">Show More</a>
+            </div>
+        </div>
+    </div>
     <div class="contact">
         <h1 class="mx-auto text-center">Contact Us</h1>
 

@@ -11,4 +11,9 @@ class Product extends Model
         'desc',
         'price'
     ];
+
+    public function image()
+    {
+        return $this->hasOne('App\images');
+    }
 }
