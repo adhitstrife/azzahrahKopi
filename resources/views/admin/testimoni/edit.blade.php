@@ -101,23 +101,44 @@ desired effect
             <div class="image row justify-content-center mx-auto">
             <img src="{{asset('storage/image/slider/'.$data->image) }}" alt="" class="col-md-4">
             </div>
-            <form action="{{Route('admin.slider.update',$data->id)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{Route('admin.testimoni.update',$data->id)}}" method="POST" enctype="multipart/form-data">
               @csrf
               @method('put')
                 <div class="box-body">
-                  <div class="form-group">
-                    <label for="image">Edit Slider Image</label>
-                    @error('image')
-                      <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <input type="file" name="image" id="" accept="image/jpeg">
+                <div class="form-group">
+                  <label>Nama</label>
+                  @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                  <input type="text" class="form-control" value="{{ $data->name}}" name="name">
+                </div>
+                <div class="form-group">
+                    <label>Pekerjaan</label>
+                      @error('jobs')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+                      <input type="text" class="form-control" value="{{$data->jobs}}" name="jobs">
+                </div>
+                <div class="form-group">
+                      <label>Quote</label>
+                      @error('quote')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+                      <textarea class="form-control" rows="3" placeholder="Testimoni" name="quote">{{$data->quote}}</textarea>
+                </div>
+                <div class="form-group">
+                      <label for="image">Image</label>
+                      @error('image')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+                      <input type="file" name="image" id="" accept="image/jpeg">
                   </div>
                 </div>
                 <div class="box-footer">
                   <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-              </form>
-        </div>
+            </form>
+          </div>
     </section>
     <!-- /.content -->
   </div>

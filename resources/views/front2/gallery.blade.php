@@ -14,7 +14,7 @@
     {{-- navbar section --}}
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-success">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('image/logo.png') }}" alt="" class="img-fluid icon">  
+          <img src="{{ url('storage/image/icon/'.$icon->icon) }}" alt="" class="img-fluid icon">            
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,15 +22,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('front.index') }}"">Home</a>                    
+                  <a class="nav-link" href="{{ route('front.index') }}"">Home</a>                                        
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('front.product.page') }}">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('front.berita.page')}}">Berita <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Product <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('front.berita.page')}}">Berita</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('front.gallery.page') }}">Gallery</a>
                 </li>
                 <li class="nav-item">
@@ -39,42 +39,22 @@
             </ul>
         </div>
     </nav>
-    <div class="header-product row align-items-center">
+    <div class="header-news row align-items-center">
         <div class="header-content mx-auto text-center">
-            <h1>Our Product Here</h1>
+            <h1>Dokumentasi Terbaru Dari Kami</h1>
         </div>
     </div>
     <div class="product-content row justify-content-around">
-            @foreach ($data as $data)    
-                <div class="product col-lg-3 col-md-4 mb-4">                
-                        <!--Card-->
-                    <div class="card card-cascade narrower mb-4" style="margin-top: 28px">
-                        <!--Card image-->
-                        <div class="view view-cascade">
-                            <img src="{{ url('image/product/'.$data->image->image) }}" class="card-img-top"
-                            alt="">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!--/.Card image-->
+            @if ($data->isEmpty())
+                <p>Belum Ada Data</p>
                 
-                        <!--Card content-->
-                        <div class="card-body card-body-cascade text-center">
-                            <!--Title-->
-                            <div class="card-title">
-                                <h4>{{ $data->name }}</h4>
-                                <small>Rp. {{ $data->price }}</small>
-                            </div>
-                            <!--Text-->
-                            <p class="card-text">{{ $data->desc }}</p>
-                            <a class="btn btn-outline-success">Beli</a>
-                        </div>
-                        <!--/.Card content-->
+            @else
+                @foreach ($data as $data)    
+                    <div class="product col-lg-4 col-md-4 mb-4">         
+                        <img class="img-thumbnail img-fluid" src="{{ url('storage/image/gallery/'.$data->image) }}" alt="">       
                     </div>
-                    <!--/.Card-->    
-            </div>
-            @endforeach
+                @endforeach
+            @endif
     </div>
     <div class="footer container-fluid">
             <footer class="row justify-content-around align">

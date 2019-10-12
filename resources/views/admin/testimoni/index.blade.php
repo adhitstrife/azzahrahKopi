@@ -79,12 +79,11 @@ desired effect
     <section class="row content-header">
         <div class="col-md-8">
             <h1>
-              Gallery
-              <small>Landing Page Gallery Section</small>
+              <small>Landing Page Testimoni Section</small>
             </h1>
         </div>
           <div class="col-md-2 align-middle h-200">
-            <a href="{{ route('admin.gallery.create')}}" class="btn btn-lg btn-primary">Add Image</a>
+            <a href="{{ route('admin.testimoni.create')}}" class="btn btn-lg btn-primary">Add Testimoni</a>
           </div>
       {{-- <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -94,30 +93,66 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid d-flex justify-content-center">
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>Image Name</th>
-            <th style="width: 100px">Image</th>
-            <th>Tanggal Upload</th>
-            <th>Action</th>
-          </tr>
-          @foreach ($datas as $data)
-            <tr>
-              <td>{{ $data->image }}</td>
-              <td><img class="img-fluid img-thumbnail" src="{{ url('storage/image/gallery/'.$data->image) }}" alt=""></td>
-              <td>{{ $data->updated_at }}</td>
-              <td>
-                <form action="{{Route('admin.gallery.delete',$data->id)}}" method="POST">
-                  @csrf
-                  @method('delete')
-                  <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-              </td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
+      @if ($datas->count() < 3)
+        <a href="{{Route('admin.testimoni.draft.index')}}">Publish Testimoni</a>      
+      @endif
+          <h4><b>Published</b></h4>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Nama</th>
+                <th style="width: 100px">Image</th>
+                <th>Pekerjaan</th>
+                <th>quote</th>
+                <th>status</th>
+                <th>action</th>
+              </tr>
+              @foreach ($datas as $data)
+                <tr>
+                  <td>{{ $data->name }}</td>
+                  <td><img class="img-fluid img-thumbnail" src="{{ url('storage/image/avatar/'.$data->image) }}" alt=""></td>
+                  <td>{{ $data->jobs }}</td>
+                  <td>{{ $data->quote }}</td>
+                  <td>{{ $data->status }}</td>
+                  <td>
+                    <a href="{{route('admin.testimoni.ganti.index',$data->id)}}">Ganti</a>
+                    <a href="{{route('admin.testimoni.edit',$data->id)}}" class="btn btn-info">Edit</a>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+
+          <h4>Draft</h4>
+          <table class="table">
+              <tbody>
+                <tr>
+                  <th>Nama</th>
+                  <th style="width: 100px">Image</th>
+                  <th>Pekerjaan</th>
+                  <th>quote</th>
+                  <th>status</th>
+                  <th>action</th>
+                </tr>
+                @foreach ($draft as $data)
+                  <tr>
+                    <td>{{ $data->name }}</td>
+                    <td><img class="img-fluid img-thumbnail" src="{{ url('storage/image/avatar/'.$data->image) }}" alt=""></td>
+                    <td>{{ $data->jobs }}</td>
+                    <td>{{ $data->quote }}</td>
+                    <td>{{ $data->status }}</td>
+                    <td>
+                      <form action="{{route('admin.testimoni.delete',$data->id)}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a href="{{route('admin.testimoni.edit',$data->id)}}" class="btn btn-info">Edit</a>
+                      </form>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
     </section>
     <!-- /.content -->
   </div>

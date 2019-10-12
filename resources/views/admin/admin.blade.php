@@ -88,12 +88,43 @@ desired effect
     </section>
 
     <!-- Main content -->
-    <section class="content container-fluid">
+    <section class="box-primary content container-fluid">
+      <div class="">
 
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
+        <h3>Icon</h3>
+        @if (!isset($icon))
+            <a href="{{ route('admin.add.icon') }}" class="btn btn-primary">Add Icon</a>
+        @else
+          <div class="row icon">
+            <img src="{{ url('storage/image/icon/'.$icon->icon) }}" alt="" class="col-md-6 img-thumbnail img-fluid">
+            <div class="col-md-12">
+              <h4 class="">Action</h4>
+              <a href="{{ route('admin.edit.icon',$icon->id) }}" class="btn btn-success" >Ganti Icon</a>
+            </div>
+          </div>
+        @endif
+        <h3>Welcome Message</h3>
+        @if (!isset($welcome))
+          <a href="{{ route('admin.add.text') }}" class="btn btn-primary">Add Welcome Text</a>
+        @else
+        <table class="table">
+            <tbody>
+              <tr>
+                <th>Welcome Title</th>
+                <th>Text</th>
+                <th>Tanggal Update</th>
+                <th>Action</th>
+              </tr>
+                <tr>
+                  <td>{{ $welcome->title }}</td>
+                  <td>{{ $welcome->text }}</td>
+                  <td>{{ $welcome->updated_at }}</td>
+                  <td><a href="{{ route('admin.edit.text',$welcome->id) }}" class="btn btn-success">Ganti Text</a></td>
+                </tr>
+            </tbody>
+          </table>
+        @endif
+      </div>
     </section>
     <!-- /.content -->
   </div>

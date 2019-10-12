@@ -14,7 +14,7 @@
     {{-- navbar section --}}
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-success">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('image/logo.png') }}" alt="" class="img-fluid icon">            
+            <img src="{{ url('storage/image/icon/'.$icon->icon) }}" alt="" class="img-fluid icon">            
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

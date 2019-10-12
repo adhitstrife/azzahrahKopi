@@ -1,5 +1,5 @@
 <aside class="main-sidebar">
-  
+
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
@@ -31,13 +31,14 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="#"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Inbox</span></a></li>
+        <li><a href="{{ Route('admin.index') }}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="{{ Route('admin.inbox.index') }}"><i class="fa fa-link"></i> <span>Inbox</span></a></li>
         <li><a href="{{ Route('admin.product.index') }}"><i class="fa fa-link"></i> <span>Product</span></a></li>
         <li><a href="{{ Route('admin.slider.index')}}"><i class="fa fa-link"></i> <span>Slider</span></a></li>
         <li><a href="{{ Route('admin.news.index') }}"><i class="fa fa-link"></i> <span>News</span></a></li>
         <li><a href="{{ Route('admin.gallery.index') }}"><i class="fa fa-link"></i> <span>Gallery</span></a></li>
-        <li><a href="{{ Route('admin.gallery.index') }}"><i class="fa fa-link"></i> <span>Testimoni</span></a></li>
+        <li><a href="{{ Route('admin.testimoni.index') }}"><i class="fa fa-link"></i> <span>Testimoni</span></a></li>
+        <li><a href="{{ Route('admin.testimoni.index') }}"><i class="fa fa-link"></i> <span>Footer</span></a></li>
         {{-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Category</span>
             <span class="pull-right-container">

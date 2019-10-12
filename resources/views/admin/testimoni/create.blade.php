@@ -97,22 +97,43 @@ desired effect
             <div class="box-header with-border">
                 <h3 class="box-title">Add New Gallery Image</h3>
             </div>
-        <form action="{{Route('admin.gallery.store')}}" method="POST" enctype="multipart/form-data">
-            @csrf
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="image">Add Gallery Image</label>
-                            @error('image')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <input type="file" name="image" id="" accept="image/jpeg">
-                        </div>
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-        </div>
+            <form action="{{Route('admin.testimoni.store')}}" method="POST" enctype="multipart/form-data">
+              @csrf
+                      <div class="box-body">
+                          <div class="form-group">
+                              <label>Nama</label>
+                              @error('name')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                              <input type="text" class="form-control" placeholder="Nama" name="name">
+                          </div>
+                          <div class="form-group">
+                              <label>Pekerjaan</label>
+                              @error('jobs')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                              <input type="text" class="form-control" placeholder="Pekerjaan" name="jobs">
+                          </div>
+                          <div class="form-group">
+                              <label>Quote</label>
+                              @error('quote')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                              <textarea class="form-control" rows="3" placeholder="Testimoni" name="quote"></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label for="image">Image</label>
+                              @error('image')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                              <input type="file" name="image" id="" accept="image/jpeg">
+                          </div>
+                      </div>
+                      <div class="box-footer">
+                          <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                  </form>
+          </div>
     </section>
     <!-- /.content -->
   </div>

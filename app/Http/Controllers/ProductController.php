@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\images;
+use App\Pesan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Image;
+use Mail;
 
 
 class ProductController extends Controller
@@ -21,7 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $datas = Product::orderBy('created_at','desc')->paginate(5);
+        $datas = Product::orderBy('created_at','desc')->paginate(10);
         return view('admin.product.index',['user' => $user,'datas'=>$datas]);
     }
 
@@ -51,6 +53,7 @@ class ProductController extends Controller
             'price'=>'required',
             'image'=>'required|image|max:10024',
         ]);
+        
 
         $data = new Product;
         $data->name = $request->name;
@@ -62,11 +65,30 @@ class ProductController extends Controller
         $image = new images;
         $uploadFile = $request->image;
         $filename = time()."product".".".$uploadFile->getClientOriginalExtension();
-        $destination = 'image/product';
-        $uploadFile->move(public_path($destination),$filename);
+        $destination = 'public/image/product';
+        $uploadFile->storeAs($destination,$filename);
         $image->image = $filename;
         $image->product_id = $data->id;
         $image->save();
+
+        $email = Pesan::where('subscription',1)->get();
+        foreach ($email as $email) 
+        {
+            $to_name = $email->name;
+            $to_email = $email->email;
+            $content = array(
+                'name' => $to_name,
+                'subject' => 'Pemberitahuan Product Baru',
+                'productName' => $data->name,
+                'productPrice' => $data->price,
+            );
+
+            Mail::send('emails.product', $content, function($message) use ($to_email,$to_name,$data) 
+            {
+                $message->to($to_email)
+                        ->subject($data['subject']);
+            });
+        }
 
         $user = Auth::user();
         return redirect()->route('admin.product.index')->with('user',$user);

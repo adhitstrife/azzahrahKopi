@@ -19,6 +19,7 @@ class CreateTestimonisTable extends Migration
             $table->string('name');
             $table->string('jobs');
             $table->string('quote');
+            $table->string('status');
             $table->timestamps();
         });
     }

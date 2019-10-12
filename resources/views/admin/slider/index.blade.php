@@ -109,7 +109,7 @@ desired effect
               <td>{{ $data->image }}</td>
               <td><img class="img-fluid img-thumbnail" src="{{ url('storage/image/slider/'.$data->image) }}" alt=""></td>
               <td>{{ $data->updated_at }}</td>
-              <td><a href="{{ route('admin.slider.edit',$data->id) }}" class="btn btn-success">Ganti Gambar</a></td>
+              <td><a href="{{ route('admin.edit.text',$welcome->id) }}" class="btn btn-success">Ganti Gambar</a></td>
             </tr>
           @endforeach
         </tbody>
